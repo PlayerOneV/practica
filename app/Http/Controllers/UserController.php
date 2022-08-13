@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,9 +12,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $busqueda)
     {
-        //
+        //Recuperamos la información del form
+        $buscar = $busqueda->input('buscar');
+
+        //Realizamos la consulta utilizando la palabra introducida por el usuario
+        $users = User::with('courses')
+        ->whereHas('courses', function ($query) use ($buscar){
+            $query->where('name', 'like', '%'.$buscar.'%');
+        })
+        ->orwhere('name', 'like', '%'.$buscar.'%')
+        ->orWhere('apellidoP', 'like', '%'.$buscar.'%')
+        ->orWhere('apellidoM', 'like', '%'.$buscar.'%')
+        ->get();
+
+
+        return view('users', compact('users'));
     }
 
     /**

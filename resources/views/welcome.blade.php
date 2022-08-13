@@ -14,9 +14,13 @@
 </head>
 
 <body>
-    <div class="container text-center">
-        <h1 class="mb-5 fst-italic">Bienvenido</h1>
-        <x-tables.course-user :users="$users" />
+    <div class="container">
+        <form action="{{route('users.index')}}" method="get">
+            <div>
+                <input type="text" name="buscar" placeholder="Introduce tu busqueda">
+                <input type="submit" value="Buscar">
+            </div>
+        </form>
     </div>
 </body>
 
