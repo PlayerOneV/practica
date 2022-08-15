@@ -15,7 +15,7 @@
         <!-- Las siguientes filas son creadas mediante bucles para llenar las columnas -->
         @foreach ($users as $user)
         <tr scope="row" class="text-center align-middle fst-italic">
-            <td scope="col">{{$user->img}}</td>
+            <td scope="col"><img src="{{asset($user->img)}}" height="80px" width="70px" alt=""></td>
             <td scope="col">{{$user->name}}</td>
             <td scope="col">{{$user->apellidoP}}</td>
             <td scope="col">{{$user->apellidoM}}</td>
