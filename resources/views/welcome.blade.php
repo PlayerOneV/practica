@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container ms-5 mt-5 text-center">
+    <div class="container mb-4 mt-5">
         <form action="{{route('users.index')}}" method="get">
             <div>
                 <input type="text" name="buscar" placeholder="Introduce tu busqueda">
