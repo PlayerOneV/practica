@@ -13,14 +13,15 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('img');
-            $table->string('name');
-            $table->string('apellidoP');
-            $table->string('apellidoM');
-            $table->string('email')->unique();
-            $table->boolean('status');
+        //Si seguimos la convención laravel sabe que crearemos una tabla users 
+        Schema::create('users', function (Blueprint $table) { 
+            $table->id(); //Columna id, autoincrement, principal key
+            $table->string('img'); //Columna img tipo string (varchar 255)
+            $table->string('name'); //Columna name tipo string (varchar 255)
+            $table->string('apellidoP'); //Columna apellidoP tipo string (varchar 255)
+            $table->string('apellidoM'); //Columna apellidoM tipo string (varchar 255)
+            $table->string('email')->unique(); //Columna email tipo string (varchar 255) y debe ser unico
+            $table->boolean('status'); //Columna status tipo boolean
         });
     }
 
@@ -31,6 +32,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('users'); //Elimina nuestra tabla users si existe
     }
 }

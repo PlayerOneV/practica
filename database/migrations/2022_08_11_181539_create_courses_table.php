@@ -13,10 +13,11 @@ class CreateCoursesTable extends Migration
      */
     public function up()
     {
+        //Si seguimos la convención laravel sabe que crearemos una tabla courses 
         Schema::create('courses', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('description');
+            $table->id(); //Columna id, autoincrement, principal key
+            $table->string('name'); //Columna name tipo string (varchar 255)
+            $table->string('description'); //Columna description tipo string (varchar 255)
         });
     }
 
@@ -27,6 +28,6 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('courses'); //Elimina nuestra tabla users si existe
     }
 }
