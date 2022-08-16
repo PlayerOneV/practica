@@ -1,20 +1,18 @@
 <?php
-
 namespace App\View\Components\tables;
-
 use Illuminate\View\Component;
 
 class courseUser extends Component
 {
-    public $users;
+    public $users; //Creamos una variable
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($users)
+    public function __construct($users) //Indicamos en el constructor que nuestro componente va a recibir información
     {
-        $this->users = $users;
+        $this->users = $users; //Con esto nuestro componente ya tiene acceso a la información que le pasamos por la vista
     }
 
     /**

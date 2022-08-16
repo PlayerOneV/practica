@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Ruta por defecto, simplemente regresa la vista welcome.blade.php
 Route::get('/', function () {
-    $users = User::with('courses')->get();
-    //dd($users);
-    return view('welcome', compact('users'));
+    return view('welcome');
 });
 
-Route::resource('users', UserController::class);
+/* Creamos una ruta get con la url /users que utilizara el UserController función index y le ponemos el nombre users.index */
+Route::get('users', [UserController::class, 'index'])->name('users.index');

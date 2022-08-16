@@ -12,22 +12,30 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $busqueda)
+
+    public function index(Request $busqueda) //La función index recibira un Request (solicitud) de un form
     {
-        //Recuperamos la información del form
+        //Recuperamos la información del form utilizando la propiedad name del input
         $buscar = $busqueda->input('buscar');
 
-        //Realizamos la consulta utilizando la palabra introducida por el usuario
+        /*Realizamos la consulta utilizando la palabra introducida por el usuario
+        Llamamos a nuestro modelo user y lo relacionamos con la tabla courses
+        Donde courses tenga un nombre parecido a buscar
+        O donde users tenga un nombre parecido a buscar
+        O donde users tenga un apellidoP parecido a buscar
+        O donde users tenga un apellidoM parecido a buscar
+        hacemos un select del resultado
+        */
         $users = User::with('courses')
-        ->whereHas('courses', function ($query) use ($buscar){
-            $query->where('name', 'like', '%'.$buscar.'%');
-        })
-        ->orwhere('name', 'like', '%'.$buscar.'%')
-        ->orWhere('apellidoP', 'like', '%'.$buscar.'%')
-        ->orWhere('apellidoM', 'like', '%'.$buscar.'%')
-        ->get();
+            ->whereHas('courses', function ($query) use ($buscar) {
+                $query->where('name', 'like', '%' . $buscar . '%');
+            })
+            ->orwhere('name', 'like', '%' . $buscar . '%')
+            ->orWhere('apellidoP', 'like', '%' . $buscar . '%')
+            ->orWhere('apellidoM', 'like', '%' . $buscar . '%')
+            ->get();
 
-
+        //Regresamos la vista users.blade.php y le pasamos a la vista el resultado de nuestra consulta
         return view('users', compact('users'));
     }
 

@@ -22,15 +22,16 @@
             <td scope="col">{{$user->email}}</td>
             <td scope="col" class="text-start">
                 <ul>
-                    @if ($user->courses->count() > 0)
+                    @if ($user->courses->count() > 0) {{-- Si el usuario tiene mas de 0 curso entonces los recorremos --}}
                     @foreach ($user->courses as $course)
                     <li>{{$course->name}}</li>
                     @endforeach
-                    @else
+                    @else {{-- Si el usuario no tiene cursos entonces en su lugar imprimira --}}
                     <li>No hay cursos</li>
                     @endif
                 </ul>
             </td>
+            {{-- Si el usuario tiene status activo encontes mostrara activo en verde y si no inactivo en rojo --}}
             <td scope="col" @class(['text-success'=> $user->status, 'text-danger' =>
                 !$user->status])>{{$user->status ? 'Activo' : 'Inactivo'}}</td>
         </tr>
