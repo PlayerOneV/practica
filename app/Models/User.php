@@ -41,9 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    //Creamos una función dentro de la clase con el nombre de la tabla a la que se relaciona
     public function courses()
     {
+        //Indicamos - user pertenece a muchos cursos, entre parentesis la clase del modelo Course
         return $this->belongsToMany(Course::class);
     }
 }
